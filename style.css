@@ -130,10 +130,43 @@ main > *:first-child {
 }
 
 /* NO TOUCHY HERE AND ABOVE */
+
+/* STYLES I WANNA ADD TO THE GENERAL */
+
+label {
+    text-transform: none;
+}
+
+/* STYLES THAT ARE JUST FOR THIS */
+
+#app-container {
+    display: grid;
+    grid-template-columns: 33% 67%;
+    grid-template-rows: 1fr;
+}
+
+#controls {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#card {
+    border: solid 1px var(--dark-gray);
+    border-radius: 5px;
+    height: 256px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+#progress-num strong {
+    color: var(--green);
+}
   
 #progress-bar-wrapper {
     height: 8px;
-    border: solid 1px var(--light-gray);
+    border: solid 1px var(--dark-gray);
     border-radius: 5px;
     overflow: hidden;
 }

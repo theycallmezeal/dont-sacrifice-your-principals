@@ -162,23 +162,26 @@ class FlashcardSession extends React.Component {
         var widthStyle = {width: width + "%"};
         console.log(width);
         return (
-            <div>
-                <Card flip={this.flip} isFront={this.state.isFront} front={front} back={back}></Card>
-                <div id="card-and-controls">
-                    <p><button class="primary-button" onClick={this.decrement}>&larr;</button></p>
-                    <p>{i + 1} / {this.state.cards.length}</p>
-                    <p><button class="primary-button" onClick={this.increment}>&rarr;</button></p>
-                    <div id="progress-bar-wrapper">
-                        <div id="progress-bar" style={widthStyle}></div>
-                    </div>
-                </div>
+            <div id="app-container">
                 <div id="settings-panel">
+                    <h1>German vocabulary</h1>
                     <p><button onClick={this.resetCards}>Restart</button></p>
                     <p><input type="checkbox" name="shuffle" id="shuffle" checked={this.state.shuffle} onChange={this.updateInput}></input><label htmlFor="shuffle">Shuffle</label></p>
                     <p><input type="checkbox" name="base-words-only" id="base-words-only" checked={this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="base-words-only">Base Words Only</label></p>
                     <p><input type="checkbox" name="all-word-details" id="all-word-details" checked={!this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="all-word-details">All Word Details</label></p>
                     <p><input type="checkbox" name="start-with-l1" id="start-with-l1" checked={this.state.startWithL1} onChange={this.updateInput}></input><label htmlFor="start-with-l1">Start with English</label></p>
                     <p><input type="checkbox" name="start-with-l2" id="start-with-l2" checked={!this.state.startWithL1} onChange={this.updateInput}></input><label htmlFor="start-with-l2">Start with German</label></p>
+                </div>
+                <div id="card-and-controls">
+                    <Card flip={this.flip} isFront={this.state.isFront} front={front} back={back}></Card>
+                    <div id="progress-bar-wrapper">
+                        <div id="progress-bar" style={widthStyle}></div>
+                    </div>
+                    <div id="controls">
+                        <p><button class="primary-button" onClick={this.decrement}>&larr;</button></p>
+                        <p id="progress-num"><strong>{i + 1}</strong> / <strong>{this.state.cards.length}</strong></p>
+                        <p><button class="primary-button" onClick={this.increment}>&rarr;</button></p>
+                    </div>
                 </div>
             </div>
         );
