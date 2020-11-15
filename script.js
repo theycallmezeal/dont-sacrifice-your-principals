@@ -32,25 +32,12 @@ var cards = [
 class Card extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isFront: this.props.isFront
-        };
-
-        this.flip = this.flip.bind(this);
-    }
-
-    flip() {
-        this.setState(
-            function(state) {
-                return {isFront: !state.isFront};
-            }
-        );
     }
 
     render() {
-        var cardContent = this.state.isFront ? this.props.front : this.props.back;
+        var cardContent = this.props.isFront ? this.props.front : this.props.back;
 
-        return <h1 onClick={this.flip}>{cardContent}</h1>;
+        return <h1 onClick={this.props.flip}>{cardContent}</h1>;
     }
 }
 
@@ -59,20 +46,33 @@ class FlashcardSession extends React.Component {
         super(props);
         this.state = {
             cards: this.props.cards,
-            currentCard: 0
+            currentCard: 0,
+            isFront: true
         };
 
+        this.flip = this.flip.bind(this);
         this.increment = this.increment.bind(this);
         this.decrement = this.decrement.bind(this);
+    }
+
+    flip() {
+        this.setState(
+            function(state) {
+                return {isFront: !state.isFront}
+            }
+        )
     }
 
     increment() {
         this.setState(
             function(state) {
                 if (state.currentCard == state.cards.length - 1) {
-                    return {};
+                    return {isFront: true};
                 }
-                return {currentCard: state.currentCard + 1};
+                return {
+                    isFront: true,
+                    currentCard: state.currentCard + 1
+                };
             }
         );
     }
@@ -81,9 +81,12 @@ class FlashcardSession extends React.Component {
         this.setState(
             function(state) {
                 if (state.currentCard == 0) {
-                    return {};
+                    return {isFront: true};
                 }
-                return {currentCard: state.currentCard - 1};
+                return {
+                    isFront: true,
+                    currentCard: state.currentCard - 1
+                };
             }
         );
     }
@@ -92,7 +95,7 @@ class FlashcardSession extends React.Component {
         var i = this.state.currentCard;
         return (
             <div>
-                <Card isFront={true} front={this.state.cards[i].l1} back={this.state.cards[i].l2}></Card>
+                <Card flip={this.flip} isFront={this.state.isFront} front={this.state.cards[i].l1} back={this.state.cards[i].l2}></Card>
                 <div>
                     <p><button onClick={this.decrement}>&larr;</button></p>
                     <p>{i + 1} / {this.state.cards.length}</p>
