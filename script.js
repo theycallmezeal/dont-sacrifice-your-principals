@@ -1,6 +1,6 @@
 var app = document.getElementById('app');
 var five = 5;
-var cards = [
+var originalCards = [
     {
         l2: "der Tag",
         l1: "the day",
@@ -29,6 +29,17 @@ var cards = [
     }
 ]
 
+function shuffleArray(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
 class Card extends React.Component {
     constructor(props) {
         super(props);
@@ -47,12 +58,14 @@ class FlashcardSession extends React.Component {
         this.state = {
             cards: this.props.cards,
             currentCard: 0,
-            isFront: true
+            isFront: true,
+            shuffle: true
         };
 
         this.flip = this.flip.bind(this);
         this.increment = this.increment.bind(this);
         this.decrement = this.decrement.bind(this);
+        this.resetCards = this.resetCards.bind(this);
     }
 
     flip() {
@@ -91,6 +104,25 @@ class FlashcardSession extends React.Component {
         );
     }
 
+    resetCards() {
+        this.setState(
+            function(state) {
+                if (state.shuffle) {
+                    var shuffledCards = originalCards.slice(); /* copy */
+                    shuffleArray(shuffledCards);
+                    return {
+                        cards: shuffledCards,
+                        currentCard: 0
+                    };
+                }
+                return {
+                    cards: originalCards,
+                    currentCard: 0
+                };
+            }
+        )
+    }
+
     render() {
         var i = this.state.currentCard;
         return (
@@ -101,12 +133,13 @@ class FlashcardSession extends React.Component {
                     <p>{i + 1} / {this.state.cards.length}</p>
                     <p><button onClick={this.increment}>&rarr;</button></p>
                 </div>
+                <p><button onClick={this.resetCards}>Restart</button></p>
             </div>
         );
     }
 }
 
 ReactDOM.render(
-    <FlashcardSession cards={cards}></FlashcardSession>,
+    <FlashcardSession cards={originalCards}></FlashcardSession>,
     app
 );
