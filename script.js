@@ -66,6 +66,7 @@ class FlashcardSession extends React.Component {
         this.increment = this.increment.bind(this);
         this.decrement = this.decrement.bind(this);
         this.resetCards = this.resetCards.bind(this);
+        this.updateInput = this.updateInput.bind(this);
     }
 
     flip() {
@@ -107,20 +108,25 @@ class FlashcardSession extends React.Component {
     resetCards() {
         this.setState(
             function(state) {
-                if (state.shuffle) {
-                    var shuffledCards = originalCards.slice(); /* copy */
-                    shuffleArray(shuffledCards);
-                    return {
-                        cards: shuffledCards,
-                        currentCard: 0
-                    };
-                }
+                /* originalCards.slice() makes a copy */
+                newCards = state.shuffle ? shuffleArray(originalCards.slice()) : originalCards;
                 return {
-                    cards: originalCards,
-                    currentCard: 0
+                    cards: newCards,
+                    currentCard: 0,
+                    isFront: true
                 };
             }
         )
+    }
+
+    updateInput(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
     }
 
     render() {
@@ -134,6 +140,7 @@ class FlashcardSession extends React.Component {
                     <p><button onClick={this.increment}>&rarr;</button></p>
                 </div>
                 <p><button onClick={this.resetCards}>Restart</button></p>
+                <p><input type="checkbox" name="shuffle" id="shuffle" checked={this.state.shuffle} onChange={this.updateInput}></input><label htmlFor="shuffle">Shuffle</label></p>
             </div>
         );
     }
