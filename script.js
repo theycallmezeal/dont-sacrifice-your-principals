@@ -60,7 +60,8 @@ class FlashcardSession extends React.Component {
             currentCard: 0,
             isFront: true,
             shuffle: true,
-            baseWordsOnly: true
+            baseWordsOnly: true,
+            startWithL1: true
         };
 
         this.flip = this.flip.bind(this);
@@ -126,12 +127,18 @@ class FlashcardSession extends React.Component {
         const name = target.name;
         
         if (name == "shuffle") {
-            this.setState({"shuffle": value});
+            this.setState({shuffle: value});
         } else if (name == "base-words-only") {
-            this.setState({baseWordsOnly: value})
+            this.setState({baseWordsOnly: true})
         } else if (name == "all-word-details") {
-            this.setState({baseWordsOnly: !value})
-        } else {
+            this.setState({baseWordsOnly: false})
+        } else if (name == "start-with-l1") {
+            this.setState({startWithL1: true})
+        } else if (name == "start-with-l2") {
+            this.setState({startWithL1: false})
+        }
+        
+        else {
             console.log(name + " " + value);
         }
     }
@@ -150,6 +157,8 @@ class FlashcardSession extends React.Component {
                 <p><input type="checkbox" name="shuffle" id="shuffle" checked={this.state.shuffle} onChange={this.updateInput}></input><label htmlFor="shuffle">Shuffle</label></p>
                 <p><input type="checkbox" name="base-words-only" id="base-words-only" checked={this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="base-words-only">Base Words Only</label></p>
                 <p><input type="checkbox" name="all-word-details" id="all-word-details" checked={!this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="all-word-details">All Word Details</label></p>
+                <p><input type="checkbox" name="start-with-l1" id="start-with-l1" checked={this.state.startWithL1} onChange={this.updateInput}></input><label htmlFor="start-with-l1">Start with English</label></p>
+                <p><input type="checkbox" name="start-with-l2" id="start-with-l2" checked={!this.state.startWithL1} onChange={this.updateInput}></input><label htmlFor="start-with-l2">Start with German</label></p>
             </div>
         );
     }
