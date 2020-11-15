@@ -116,21 +116,23 @@ class FlashcardSession extends React.Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         
+        var stateChanges = {};
+
         if (name == "shuffle") {
-            this.setState({shuffle: value});
+            stateChanges.shuffle = value;
         } else if (name == "base-words-only") {
-            this.setState({baseWordsOnly: true})
+            stateChanges.baseWordsOnly = true;
         } else if (name == "all-word-details") {
-            this.setState({baseWordsOnly: false})
+            stateChanges.baseWordsOnly = false;
         } else if (name == "start-with-l1") {
-            this.setState({startWithL1: true})
+            stateChanges.startWithL1 = true;
         } else if (name == "start-with-l2") {
-            this.setState({startWithL1: false})
+            stateChanges.startWithL1 = false;
         }
         
-        else {
-            console.log(name + " " + value);
-        }
+        stateChanges.haveControlsChanged = true;
+        
+        this.setState(stateChanges);
     }
 
     render() {
@@ -142,12 +144,13 @@ class FlashcardSession extends React.Component {
 
         var width = (i + 1) / this.state.cards.length * 100;
         var widthStyle = {width: width + "%"};
-        console.log(width);
+
+        var haveControlsChangedClass = this.state.haveControlsChanged ? "bounce" : "";
         return (
             <div id="app-container">
                 <div id="settings-panel">
                     <h1>German vocabulary</h1>
-                    <p><button onClick={this.resetCards}>Restart</button></p>
+                    <p><button className={haveControlsChangedClass} onClick={this.resetCards}>Restart</button></p>
                     <p><input type="checkbox" name="shuffle" id="shuffle" checked={this.state.shuffle} onChange={this.updateInput}></input><label htmlFor="shuffle">Shuffle</label></p>
                     <hr></hr>
                     <p><input type="checkbox" name="base-words-only" id="base-words-only" checked={this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="base-words-only">Base Words Only</label></p>

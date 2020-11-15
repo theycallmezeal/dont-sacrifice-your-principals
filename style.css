@@ -158,6 +158,17 @@ hr {
     background-color: var(--lighter-green);
 }
 
+@keyframes bounce {
+    0%   {transform: scale(1);}
+    50%  {transform: scale(1.05);}
+    100% {transform: scale(1);}
+}
+
+.bounce {
+    animation-name: bounce;
+    animation-duration: 0.2s;
+}
+
 /* STYLES THAT ARE JUST FOR THIS */
 
 #app-container {
