@@ -153,9 +153,13 @@ class FlashcardSession extends React.Component {
 
     render() {
         var i = this.state.currentCard;
+        var l1 = this.state.cards[i].l1;
+        var l2 = this.state.cards[i].l2;
+        var front = this.state.startWithL1 ? l1 : l2;
+        var back = this.state.startWithL1 ? l2 : l1;
         return (
             <div>
-                <Card flip={this.flip} isFront={this.state.isFront} front={this.state.cards[i].l1} back={this.state.cards[i].l2}></Card>
+                <Card flip={this.flip} isFront={this.state.isFront} front={front} back={back}></Card>
                 <div>
                     <p><button onClick={this.decrement}>&larr;</button></p>
                     <p>{i + 1} / {this.state.cards.length}</p>
