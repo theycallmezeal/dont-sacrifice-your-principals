@@ -133,8 +133,24 @@ main > *:first-child {
 
 /* STYLES I WANNA ADD TO THE GENERAL */
 
+:root {
+    --gray: hsl(0, 0%, 70%);
+}
+
 label {
     text-transform: none;
+}
+
+hr {
+    background: linear-gradient(to right, var(--header-border-green) 0%, transparent 100%);
+}
+
+.boxed-text {
+    background-color: var(--light-gray);
+    color: var(--darker-gray);
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 2px;
 }
 
 /* STYLES THAT ARE JUST FOR THIS */
@@ -151,13 +167,13 @@ label {
 }
 
 #card {
-    border: solid 1px var(--dark-gray);
+    border: solid 1px var(--gray);
     border-radius: 5px;
     height: 256px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 36px;
 }
 
 #progress-num strong {
@@ -166,7 +182,7 @@ label {
   
 #progress-bar-wrapper {
     height: 8px;
-    border: solid 1px var(--dark-gray);
+    border: solid 1px var(--gray);
     border-radius: 5px;
     overflow: hidden;
 }
@@ -175,4 +191,9 @@ label {
     height: 100%;
     width: 25%;
     background-color: var(--green);
+}
+
+#instructions {
+    font-weight: bold;
+    text-align: center;
 }

@@ -1,32 +1,13 @@
 var app = document.getElementById('app');
 var five = 5;
 var originalCards = [
-    {
-        l2: "der Tag",
-        l1: "the day",
-        isBase: true
-    },
-    {
-        l2: "Tage",
-        l1: "days"
-    },
-    {
-        l2: "jeden Tag",
-        l1: "every day"
-    },
-    {
-        l2: "sein",
-        l1: "to be",
-        isBase: true
-    },
-    {
-        l2: "ich bin",
-        l1: "I am"
-    },
-    {
-        l2: "ich war",
-        l1: "I was"
-    }
+    { l2: "der Computer", l1: "the computer", isBase: true },
+    { l2: "Tage", l1: "days" },
+    { l2: "jeden Tag", l1: "every day" },
+    { l2: "an einem Tag", l1: "on a day" },
+    { l2: "sein", l1: "to be", isBase: true },
+    { l2: "ich bin", l1: "I am" },
+    { l2: "ich war", l1: "I was" },
 ]
 
 function shuffleArray(a) {
@@ -59,7 +40,7 @@ class FlashcardSession extends React.Component {
             cards: this.props.cards,
             currentCard: 0,
             isFront: true,
-            shuffle: true,
+            shuffle: false,
             baseWordsOnly: true,
             startWithL1: true
         };
@@ -167,8 +148,10 @@ class FlashcardSession extends React.Component {
                     <h1>German vocabulary</h1>
                     <p><button onClick={this.resetCards}>Restart</button></p>
                     <p><input type="checkbox" name="shuffle" id="shuffle" checked={this.state.shuffle} onChange={this.updateInput}></input><label htmlFor="shuffle">Shuffle</label></p>
+                    <hr></hr>
                     <p><input type="checkbox" name="base-words-only" id="base-words-only" checked={this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="base-words-only">Base Words Only</label></p>
                     <p><input type="checkbox" name="all-word-details" id="all-word-details" checked={!this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="all-word-details">All Word Details</label></p>
+                    <hr></hr>
                     <p><input type="checkbox" name="start-with-l1" id="start-with-l1" checked={this.state.startWithL1} onChange={this.updateInput}></input><label htmlFor="start-with-l1">Start with English</label></p>
                     <p><input type="checkbox" name="start-with-l2" id="start-with-l2" checked={!this.state.startWithL1} onChange={this.updateInput}></input><label htmlFor="start-with-l2">Start with German</label></p>
                 </div>
@@ -182,6 +165,10 @@ class FlashcardSession extends React.Component {
                         <p id="progress-num"><strong>{i + 1}</strong> / <strong>{this.state.cards.length}</strong></p>
                         <p><button class="primary-button" onClick={this.increment}>&rarr;</button></p>
                     </div>
+                    <p id="instructions">
+                        FLIP CARD: <span class="boxed-text">&uarr;</span> <span class="boxed-text">&darr;</span>
+                        &nbsp;PREV / NEXT: <span class="boxed-text">&larr;</span> <span class="boxed-text">&rarr;</span>
+                    </p>
                 </div>
             </div>
         );
