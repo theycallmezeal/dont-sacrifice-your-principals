@@ -2,12 +2,15 @@ var app = document.getElementById('app');
 var five = 5;
 var originalCards = [
     { l2: "der Computer", l1: "the computer", isBase: true },
-    { l2: "Tage", l1: "days" },
-    { l2: "jeden Tag", l1: "every day" },
-    { l2: "an einem Tag", l1: "on a day" },
-    { l2: "sein", l1: "to be", isBase: true },
-    { l2: "ich bin", l1: "I am" },
-    { l2: "ich war", l1: "I was" },
+    { l2: "Computer", l1: "computers" },
+    { l2: "am Computer", l1: "on the computer" },
+    { l2: "die Webseite", l1: "the website", isBase: true },
+    { l2: "Webseiten", l1: "websites" },
+    { l2: "auf einer Webseite", l1: "on a website" },
+    { l2: "schreiben", l1: "to write", isBase: true },
+    { l2: "er/sie schriebt", l1: "he/she writes" },
+    { l2: "schrieb", l1: "wrote (simple past)" },
+    { l2: "hat geschrieben", l1: "has written (past perfect)" }
 ]
 
 function shuffleArray(a) {
