@@ -48,7 +48,7 @@ class Card extends React.Component {
     render() {
         var cardContent = this.props.isFront ? this.props.front : this.props.back;
 
-        return <h1 onClick={this.props.flip}>{cardContent}</h1>;
+        return <p id="card" onClick={this.props.flip}>{cardContent}</p>;
     }
 }
 
@@ -157,20 +157,29 @@ class FlashcardSession extends React.Component {
         var l2 = this.state.cards[i].l2;
         var front = this.state.startWithL1 ? l1 : l2;
         var back = this.state.startWithL1 ? l2 : l1;
+
+        var width = (i + 1) / this.state.cards.length * 100;
+        var widthStyle = {width: width + "%"};
+        console.log(width);
         return (
             <div>
                 <Card flip={this.flip} isFront={this.state.isFront} front={front} back={back}></Card>
-                <div>
-                    <p><button onClick={this.decrement}>&larr;</button></p>
+                <div id="card-and-controls">
+                    <p><button class="primary-button" onClick={this.decrement}>&larr;</button></p>
                     <p>{i + 1} / {this.state.cards.length}</p>
-                    <p><button onClick={this.increment}>&rarr;</button></p>
+                    <p><button class="primary-button" onClick={this.increment}>&rarr;</button></p>
+                    <div id="progress-bar-wrapper">
+                        <div id="progress-bar" style={widthStyle}></div>
+                    </div>
                 </div>
-                <p><button onClick={this.resetCards}>Restart</button></p>
-                <p><input type="checkbox" name="shuffle" id="shuffle" checked={this.state.shuffle} onChange={this.updateInput}></input><label htmlFor="shuffle">Shuffle</label></p>
-                <p><input type="checkbox" name="base-words-only" id="base-words-only" checked={this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="base-words-only">Base Words Only</label></p>
-                <p><input type="checkbox" name="all-word-details" id="all-word-details" checked={!this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="all-word-details">All Word Details</label></p>
-                <p><input type="checkbox" name="start-with-l1" id="start-with-l1" checked={this.state.startWithL1} onChange={this.updateInput}></input><label htmlFor="start-with-l1">Start with English</label></p>
-                <p><input type="checkbox" name="start-with-l2" id="start-with-l2" checked={!this.state.startWithL1} onChange={this.updateInput}></input><label htmlFor="start-with-l2">Start with German</label></p>
+                <div id="settings-panel">
+                    <p><button onClick={this.resetCards}>Restart</button></p>
+                    <p><input type="checkbox" name="shuffle" id="shuffle" checked={this.state.shuffle} onChange={this.updateInput}></input><label htmlFor="shuffle">Shuffle</label></p>
+                    <p><input type="checkbox" name="base-words-only" id="base-words-only" checked={this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="base-words-only">Base Words Only</label></p>
+                    <p><input type="checkbox" name="all-word-details" id="all-word-details" checked={!this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="all-word-details">All Word Details</label></p>
+                    <p><input type="checkbox" name="start-with-l1" id="start-with-l1" checked={this.state.startWithL1} onChange={this.updateInput}></input><label htmlFor="start-with-l1">Start with English</label></p>
+                    <p><input type="checkbox" name="start-with-l2" id="start-with-l2" checked={!this.state.startWithL1} onChange={this.updateInput}></input><label htmlFor="start-with-l2">Start with German</label></p>
+                </div>
             </div>
         );
     }
