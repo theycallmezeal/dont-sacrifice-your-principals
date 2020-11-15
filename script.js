@@ -8,9 +8,9 @@ var originalCards = [
     { l2: "Webseiten", l1: "websites" },
     { l2: "auf einer Webseite", l1: "on a website" },
     { l2: "schreiben", l1: "to write", isBase: true },
-    { l2: "er/sie/es schriebt", l1: "he/she/it writes" },
-    { l2: "ich schrieb", l1: "I wrote (simple past)" },
-    { l2: "ich habe geschrieben", l1: "I wrote; I have written (past perfect)" }
+    { l2: "schriebt", l1: "(he/she/it) writes" },
+    { l2: "schrieb", l1: "wrote (simple past)" },
+    { l2: "hat geschrieben", l1: "wrote; has written (past perfect)" }
 ]
 
 function shuffleArray(a) {

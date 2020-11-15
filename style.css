@@ -173,13 +173,15 @@ hr {
 
 #app-container {
     display: grid;
-    grid-template-columns: 33% 67%;
+    grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
 }
 
 #controls {
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    text-align: center;
 }
 
 #card {
