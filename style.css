@@ -1,0 +1,130 @@
+/*
+	font sizes: 12px, 14px, 16px, 18px, 20px, 24px, 30px, 36px, 48px, 60px, 72px
+	distances: 4px, 8px, 12px, 16px, 24px, 32px, 48px, 64px, 96px, 128px, 192px, 256px, 384px, 512px, 640px, 768px
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+	--box-shadow-color: hsla(0, 0%, 0%, 0.063);
+	--darker-gray: hsl(0, 0%, 27%);
+	--dark-gray: hsl(0, 0%, 40%);
+	--light-gray: hsl(0, 0%, 87%);
+	--lighter-gray: hsl(0, 0%, 93%);
+	--light-green: hsl(162, 100%, 86%);
+	--green: hsl(162, 90%, 27%);
+	--header-border-green: hsl(162, 40%, 70%);
+
+	--width: 66%;
+  }
+
+/* GENERAL STYLING */
+
+html, body, header {
+	min-height: 100%;
+}
+
+body {
+	margin: 0px;
+  	color: var(--dark-gray);
+	font-family: 'Nunito Sans', 'Noto Sans', sans-serif;
+	/* TODO replace these with local font files so combining characters can work */
+	border-top: solid 5px var(--green);
+	font-size: 16px;
+	line-height: 28px;
+}
+
+main {
+	width: var(--width);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h1, h2, h3 {
+	color: var(--darker-gray);
+}
+
+h1 {
+	font-size: 24px;
+}
+
+h2 {
+	font-size: 20px;
+}
+
+h3 {
+	font-size: 18px;
+}
+
+h1::after, h2::after, h3::after {
+	content: "";
+	height: 1px;
+	display: block;
+}
+
+h1::after {
+	margin-top: 8px;
+	background-image: linear-gradient(to right, var(--header-border-green) 0%, transparent 100%);
+}
+
+h2::after {
+	margin-top: 4px;
+	background-image: linear-gradient(to right, var(--header-border-green) 0%, transparent 75%);
+}
+
+h3::after {
+	margin-top: 4px;
+	background-image: linear-gradient(to right, var(--header-border-green) 0%, transparent 50%);
+}
+
+hr {
+	border: none;
+	height: 1px;
+	background-color: var(--green);
+	background: linear-gradient(to right, transparent 0%, var(--green) 25%, var(--green) 75%, transparent 100%);
+}
+
+button, input {
+	font-family: inherit;
+}
+
+button {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 14px;
+	color: var(--green);
+	padding: 16px;
+	border-radius: 5px;
+	border: solid 1px var(--green);
+	background: none;
+	letter-spacing: -0.05em;
+}
+
+.primary-button {
+	background-color: var(--light-green);
+}
+
+input {
+	font-family: 14px;
+	line-height: 14px;
+	color: var(--dark-gray);
+	padding: 16px;
+	border-radius: 5px;
+	background-color: var(--lighter-gray);
+	border: solid 1px var(--light-gray);
+}
+
+label {
+	color: var(--green);
+	text-transform: uppercase;
+}
+
+main {
+	margin-top: 32px;
+}
+
+main > *:first-child {
+	margin-top: 0px;
+}
