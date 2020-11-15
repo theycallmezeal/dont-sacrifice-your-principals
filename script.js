@@ -59,7 +59,8 @@ class FlashcardSession extends React.Component {
             cards: this.props.cards,
             currentCard: 0,
             isFront: true,
-            shuffle: true
+            shuffle: true,
+            baseWordsOnly: true
         };
 
         this.flip = this.flip.bind(this);
@@ -123,10 +124,16 @@ class FlashcardSession extends React.Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
+        
+        if (name == "shuffle") {
+            this.setState({"shuffle": value});
+        } else if (name == "base-words-only") {
+            this.setState({baseWordsOnly: value})
+        } else if (name == "all-word-details") {
+            this.setState({baseWordsOnly: !value})
+        } else {
+            console.log(name + " " + value);
+        }
     }
 
     render() {
@@ -141,6 +148,8 @@ class FlashcardSession extends React.Component {
                 </div>
                 <p><button onClick={this.resetCards}>Restart</button></p>
                 <p><input type="checkbox" name="shuffle" id="shuffle" checked={this.state.shuffle} onChange={this.updateInput}></input><label htmlFor="shuffle">Shuffle</label></p>
+                <p><input type="checkbox" name="base-words-only" id="base-words-only" checked={this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="base-words-only">Base Words Only</label></p>
+                <p><input type="checkbox" name="all-word-details" id="all-word-details" checked={!this.state.baseWordsOnly} onChange={this.updateInput}></input><label htmlFor="all-word-details">All Word Details</label></p>
             </div>
         );
     }
