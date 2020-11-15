@@ -37,7 +37,7 @@ class FlashcardSession extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cards: this.props.cards,
+            cards: this.props.cards.filter(card => card.isBase),
             currentCard: 0,
             isFront: true,
             shuffle: false,
@@ -91,8 +91,8 @@ class FlashcardSession extends React.Component {
     resetCards() {
         this.setState(
             function(state) {
-                /* originalCards.slice() makes a copy */
-                newCards = originalCards.slice();
+                /* .slice() makes a copy */
+                newCards = this.props.cards.slice();
 
                 if (state.baseWordsOnly) {
                     newCards = newCards.filter(card => card.isBase);
@@ -104,7 +104,8 @@ class FlashcardSession extends React.Component {
                 return {
                     cards: newCards,
                     currentCard: 0,
-                    isFront: true
+                    isFront: true,
+                    haveControlsChanged: false
                 };
             }
         )
