@@ -111,7 +111,15 @@ class FlashcardSession extends React.Component {
         this.setState(
             function(state) {
                 /* originalCards.slice() makes a copy */
-                newCards = state.shuffle ? shuffleArray(originalCards.slice()) : originalCards;
+                newCards = originalCards.slice();
+
+                if (state.baseWordsOnly) {
+                    newCards = newCards.filter(card => card.isBase);
+                }
+
+                if (state.shuffle) {
+                    shuffleArray(newCards);
+                }
                 return {
                     cards: newCards,
                     currentCard: 0,
