@@ -135,6 +135,7 @@ main > *:first-child {
 
 :root {
     --gray: hsl(0, 0%, 70%);
+    --lighter-green: hsl(162, 100%, 93%);
 }
 
 label {
@@ -151,6 +152,10 @@ hr {
     padding-left: 4px;
     padding-right: 4px;
     border-radius: 2px;
+}
+
+.primary-button {
+    background-color: var(--lighter-green);
 }
 
 /* STYLES THAT ARE JUST FOR THIS */
